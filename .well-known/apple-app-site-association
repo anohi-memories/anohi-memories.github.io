@@ -1,0 +1,10 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["H2899GWC8N.com.anohi-memories.ouchi"],
+        "components": [{ "/": "/tewake/join*", "comment": "てわけの招待リンク" }]
+      }
+    ]
+  }
+}
