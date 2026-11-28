@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>グループへの招待｜てわけ</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+<header class="site"><a class="brand" href="./">てわけ</a></header>
+
+<h1>グループへの招待</h1>
+
+<div id="invite" hidden>
+  <p class="lead">てわけのグループに招待されています</p>
+
+  <div class="card">
+    <p><a class="button" id="open-app">アプリで開く</a></p>
+    <p>アプリをお持ちでない方は、<a id="app-store">てわけの案内ページ</a>をご覧ください。インストールしたら、この招待リンクをもう一度開いてください。</p>
+  </div>
+
+  <h2>アプリが開かないとき</h2>
+  <p>LINEの中で開いたときは、メニューからSafariで開き、「アプリで開く」を押してください。</p>
+</div>
+
+<div class="card" id="invalid-invite" hidden>
+  <p><strong>招待リンクが正しくありません</strong></p>
+  <p>招待した人にリンクを送り直してもらってください。</p>
+</div>
+
+<noscript><p>招待リンクを確認するには、JavaScriptを有効にしてページを開き直してください。</p></noscript>
+
+<footer>
+  <p><a href="support.html">サポート</a></p>
+  <p>© 2026 ANOHI Memories</p>
+</footer>
+</main>
+<script>
+  // 公開後に App Store の URL に替える。
+  const APP_STORE_URL = "./";
+  const codes = new URLSearchParams(window.location.search).getAll("c");
+
+  if (codes.length === 1 && /^[A-Za-z0-9]{22,64}$/.test(codes[0])) {
+    document.getElementById("open-app").href = "tewake://join?c=" + codes[0];
+
+    const appStoreLink = document.getElementById("app-store");
+    appStoreLink.href = APP_STORE_URL;
+    appStoreLink.textContent = APP_STORE_URL === "./" ? "てわけの案内ページ" : "App Store";
+
+    document.getElementById("invite").hidden = false;
+  } else {
+    document.getElementById("invalid-invite").hidden = false;
+  }
+</script>
+</body>
+</html>
